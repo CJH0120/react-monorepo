@@ -1,0 +1,13 @@
+{
+  "name": "hyune",
+  "private": true,
+  "packageManager": "yarn@4.4.1",
+  "workspaces": [
+    "packages/*",
+    "demo",
+    "config"
+  ],
+  "scripts": {
+    "demo": "yarn workspace @hyune/demo dev"
+  }
+}

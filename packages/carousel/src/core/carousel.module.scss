@@ -1,0 +1,107 @@
+.hyune_carousel_wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+
+  .carousel_content {
+    width: 100%;
+    height: 100%;
+    .carousel_content_inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      .carousel_image_list {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        display: flex;
+        width: 100%;
+      }
+      .carousel_image_wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex: 0 0 auto;
+        .carousel_image_container {
+          width: 100%;
+          pointer-events: auto;
+          position: relative;
+        }
+        .carousel_image {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  .carousel_count_wrapper {
+    z-index: 9999;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 15px;
+    .carousel_count {
+      padding: 5px 10px;
+      background: rgba(0, 0, 0, 0.3);
+      width: fit-content;
+      color: #fff;
+      border-radius: 4px;
+      display: flex;
+      gap: 5px;
+    }
+  }
+
+  .modified_wrapper {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+    position: absolute;
+    box-sizing: border-box;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 15px;
+    &.modified_wrapper_left {
+      left: 0;
+    }
+    &.modified_wrapper_right {
+      right: 0;
+    }
+    .arrow {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border-radius: 50%;
+      padding: 0;
+      margin: 0;
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      &.arrow_right {
+        right: 0;
+      }
+    }
+  }
+
+  //   WIDE
+  .wide_image_wrapper {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+}
