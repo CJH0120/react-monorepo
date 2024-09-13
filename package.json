@@ -8,6 +8,7 @@
     "config"
   ],
   "scripts": {
-    "demo": "yarn workspace @hyune/demo dev"
+    "demo": "yarn workspace @hyune/demo dev",
+    "build": "yarn workspace @hyune/react-carousel build"
   }
 }

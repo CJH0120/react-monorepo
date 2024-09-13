@@ -1,7 +1,7 @@
 {
-	"extends": "@hyune/config/tsconfig.build.json",
-	"compilerOptions": {
-		"outDir": "./dist/types"
-	},
-	"include": ["src"]
+  "extends": "@hyune/config/tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./dist/types"
+  },
+  "include": ["src"]
 }

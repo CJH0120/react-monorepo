@@ -62,14 +62,14 @@
   }
 
   .modified_wrapper {
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
     position: absolute;
     box-sizing: border-box;
     top: 50%;
     transform: translateY(-50%);
     padding: 0 15px;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
     &.modified_wrapper_left {
       left: 0;
     }
