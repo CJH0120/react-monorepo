@@ -11,9 +11,9 @@
 node_modules/
 
 # 빌드 결과물
-/dist/
-/build/
-/out/
+*/dist/
+*/build/
+*/out/
 
 # 환경 설정 파일
 .env
