@@ -25,6 +25,8 @@ const initialConfig: RollingBanner.Config = {
   },
 };
 export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, className }) => {
+  if (!window) return <></>;
+
   const helperConfig: RollingBanner.Config = { ...initialConfig, ...config };
   const { arrowShow, countShow, autoplay, autoplayDelay, ratio, mobileManipulate } = helperConfig;
   const transitionDuration = 350;

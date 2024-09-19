@@ -1,1 +1,3 @@
-export { Carousel } from './core/carousel';
+import { Carousel } from './core/carousel';
+
+export default Carousel;
