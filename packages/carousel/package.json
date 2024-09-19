@@ -7,26 +7,27 @@
   "types": "dist/types/index.d.ts",
   "packageManager": "yarn@4.4.1",
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "<19",
+    "react-dom": "<19"
   },
   "dependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/parser": "^8.5.0",
-    "esbuild": "0.23.1",
-    "esbuild-sass-plugin": "^3.3.1",
-    "sass": "^1.78.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "classnames": "^2.5.1",
+    "rollup": "^4.21.3",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.79.1",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.0.1"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc && node build.mjs"
+    "build": "rm -rf dist  &&  tsc && rollup --config rollup.config.mjs --bundleConfigAsCjs"
   },
   "keywords": [
     "react",
@@ -35,5 +36,10 @@
     "typescript",
     "utils"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "dist/index.cjs",
+    "dist/index.mjs",
+    "dist/types"
+  ]
 }

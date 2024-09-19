@@ -2,9 +2,14 @@
 import { CSSProperties, FC, useCallback, useEffect, useRef, useState } from 'react';
 import { RollingBanner } from '../interface';
 import styles from './carousel.module.scss';
+import classNames from 'classnames/bind';
+
 import IconArrowRight from '../icons/ic-ArrowRight';
 import IconArrowLeft from '../icons/ic-ArrowLeft';
 import { FitItemList } from './item/FitItem';
+
+const cx = classNames.bind(styles);
+
 const initialConfig: RollingBanner.Config = {
   lazyLoad: true,
   autoplay: false,
@@ -19,7 +24,6 @@ const initialConfig: RollingBanner.Config = {
     mobileRatio: 2.2 / 1,
   },
 };
-
 export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, className }) => {
   const helperConfig: RollingBanner.Config = { ...initialConfig, ...config };
   const { arrowShow, countShow, autoplay, autoplayDelay, ratio, mobileManipulate } = helperConfig;
@@ -34,6 +38,7 @@ export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, class
   });
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+
   //   Utils
   const getNextIndex = useCallback(
     (currentIdx: number) => {
@@ -41,17 +46,20 @@ export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, class
     },
     [content.length]
   );
+
   const getPrevIndex = useCallback(
     (currentIdx: number) => {
       return (currentIdx - 1 + content.length) % content.length;
     },
     [content.length]
   );
+
   function getInitialAspectRatio() {
     return window.innerWidth >= (ratio?.breakPoint ?? 768)
       ? ratio?.pcRatio ?? ratio?.mobileRatio ?? 10 / 7
       : ratio?.mobileRatio ?? ratio?.pcRatio ?? 10 / 7;
   }
+
   // NextHandler
   const handleCountUp = useCallback(() => {
     const nextIdx = getNextIndex(currentIdx);
@@ -112,10 +120,7 @@ export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, class
         });
       });
     } else {
-      console.log('prev');
-      setVisibleImages((prev) => {
-        return [content[prevIdx], ...prev.slice(0)];
-      });
+      setVisibleImages((prev) => [content[prevIdx], ...prev.slice(0)]);
 
       setTranslateCSS({
         transform: `translateX(-100%)`,
@@ -171,7 +176,6 @@ export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, class
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!mobileManipulate) return;
-
     touchEndX.current = e.touches[0].clientX;
   };
 
@@ -180,68 +184,41 @@ export const Carousel: FC<RollingBanner.BannerProps> = ({ config, content, class
     if (touchStartX.current - touchEndX.current > 50) {
       handleCountUp();
     }
-
     if (touchStartX.current - touchEndX.current < -50) {
-      if (!mobileManipulate) return;
       handleCountdown();
     }
   };
+
   return (
     <div
-      className={[styles.hyune_carousel_wrapper, className].join(' ')}
+      className={cx('hyune_carousel_wrapper', className)}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(true)}>
-      <div
-        className={styles.carousel_content}
-        style={{
-          // backgroundColor: layout === 'wide' ? helperConfig.backgroundColor : 'transparent',
-          width: '100%',
-        }}>
-        <div
-          className={[styles.carousel_content_inner].join(' ')}
-          style={{
-            aspectRatio: `${aspectRatio} `,
-          }}>
-          <>
-            <FitItemList content={visibleImages} config={helperConfig} translateCSS={translateCSS} />
-            {countShow && (
-              <div className={styles.carousel_count_wrapper}>
-                <div className={styles.carousel_count}>
-                  {currentIdx + 1}/{content.length}
-                </div>
+      onMouseLeave={() => setIsHovered(false)}>
+      <div className={cx('carousel_content')} style={{ width: '100%' }}>
+        <div className={cx('carousel_content_inner')} style={{ aspectRatio: `${aspectRatio}` }}>
+          <FitItemList content={visibleImages} config={helperConfig} translateCSS={translateCSS} />
+          {countShow && (
+            <div className={cx('carousel_count_wrapper')}>
+              <div className={cx('carousel_count')}>
+                {currentIdx + 1}/{content.length}
               </div>
-            )}
-          </>
-
-          {/* {layout === 'wide' && (
-            <>
-            <div>
-              {countShow && (
-                <div className={styles.carousel_count_wrapper}>
-                  <div className={styles.carousel_count}>
-                    {currentIdx + 1}/{content.length}
-                  </div>
-                </div>
-              )}
-            </>
-          )} */}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Modified */}
-
       {isHovered && arrowShow && (
         <>
-          <div className={[styles.modified_wrapper, styles.modified_wrapper_left].join(' ')}>
-            <button className={styles.arrow} onClick={handleCountdown}>
+          <div className={cx('modified_wrapper', 'modified_wrapper_left')}>
+            <button className={cx('arrow')} onClick={handleCountdown}>
               <IconArrowLeft fontSize={24} width={24} height={24} color="white" />
             </button>
           </div>
-          <div className={[styles.modified_wrapper, styles.modified_wrapper_right].join(' ')}>
-            <button className={styles.arrow} onClick={handleCountUp}>
+          <div className={cx('modified_wrapper', 'modified_wrapper_right')}>
+            <button className={cx('arrow')} onClick={handleCountUp}>
               <IconArrowRight fontSize={24} width={24} height={24} color="white" />
             </button>
           </div>

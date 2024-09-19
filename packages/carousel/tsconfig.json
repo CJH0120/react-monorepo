@@ -1,7 +1,11 @@
 {
   "extends": "@hyune/config/tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "./dist/types"
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist/types",
+    "emitDeclarationOnly": false
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

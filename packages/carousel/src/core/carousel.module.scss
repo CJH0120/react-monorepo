@@ -3,7 +3,7 @@
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-
+  text-align: center;
   .carousel_content {
     width: 100%;
     height: 100%;
@@ -67,6 +67,7 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 0 15px;
+    z-index: 9999;
     @media screen and (max-width: 768px) {
       display: none;
     }

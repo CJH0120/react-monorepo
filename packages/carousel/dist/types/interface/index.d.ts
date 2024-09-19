@@ -26,4 +26,4 @@ export declare namespace RollingBanner {
         landingUrl?: string;
     }
 }
-//# sourceMappingURL=interface.d.ts.map
+//# sourceMappingURL=index.d.ts.map
